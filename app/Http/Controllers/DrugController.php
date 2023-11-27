@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Drug;
+use App\Models\Drugs;
 
 class DrugController extends Controller
 {
     public function index()
     {
         // Fetch all drugs from the database
-        $drugs = Drug::all();
+        $drugs = Drugs::all();
 
         // Return a JSON response with the drugs
         return response()->json(['drugs' => $drugs]);
@@ -19,7 +19,7 @@ class DrugController extends Controller
     public function show($id)
     {
         // Fetch a specific drug by ID from the database
-        $drug = Drug::find($id);
+        $drug = Drugs::find($id);
 
         // Check if the drug exists
         if (!$drug) {
@@ -40,7 +40,7 @@ class DrugController extends Controller
         ]);
 
         // Create a new drug
-        $drug = new Drug();
+        $drug = new Drugs();
         $drug->name = $request->input('name');
         $drug->description = $request->input('description');
         // Set other attributes as needed
@@ -62,7 +62,7 @@ class DrugController extends Controller
         ]);
 
         // Fetch the drug by ID from the database
-        $drug = Drug::find($id);
+        $drug = Drugs::find($id);
 
         // Check if the drug exists
         if (!$drug) {
@@ -84,7 +84,7 @@ class DrugController extends Controller
     public function destroy($id)
     {
         // Fetch the drug by ID from the database
-        $drug = Drug::find($id);
+        $drug = Drugs::find($id);
 
         // Check if the drug exists
         if (!$drug) {

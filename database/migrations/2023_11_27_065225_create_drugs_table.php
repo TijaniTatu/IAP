@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('drugs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
-            $table->integer('quantity')->default(0);
+                $table->string('description');
+                $table->integer('quantity');
             $table->timestamps();
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('drug_category');
         });
     }
 

@@ -86,6 +86,22 @@ class UserController extends Controller
         // Return a JSON response indicating success
         return response()->json(['message' => 'User updated successfully']);
     }
+    public function gender(){
+        $male = User::where('gender', 'male')->count();
+        $female = User::where('gender', 'female')->count();
+    
+        return response()->json([
+            'male' => $male,
+            'female' => $female,
+        ]);
+    }
+    public function time(){
+        $users = User::orderBy('created_at', 'asc')->get();
+    
+        return response()->json($users);
+    }
+    
+
 
     public function destroy($id)
     {
