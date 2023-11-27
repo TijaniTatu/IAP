@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('gender');
-            $table->string('role');
+            $table->string('gender')->default('male');
+            $table->string('role')->default('user');
             $table->string('password');
             $table->timestamps();
         });

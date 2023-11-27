@@ -6,14 +6,14 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB; 
 
-class DrugCategorySeeder extends Seeder
+class Drug_categorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
 {
-    DB::table('drug_categories')->insert([
+    DB::table('drug_category')->insert([
         ['name' => 'Painkiller'],
         ['name' => 'Antibiotics'],
         ['name' => 'Antidepressant'],
@@ -32,24 +32,6 @@ class DrugCategorySeeder extends Seeder
         ['name' => 'Expectorant'],
         ['name' => 'Laxative'],
         ['name' => 'Muscle Relaxant'],
-        ['name' => 'Stimulant'],
-        ['name' => 'Vasodilator'],
-        ['name' => 'Vasoconstrictor'],
-        ['name' => 'Vitamin'],
-        ['name' => 'Antacid'],
-        ['name' => 'Antianxiety'],
-        ['name' => 'Anticoagulant'],
-        ['name' => 'Anticonvulsant'],
-        ['name' => 'Antidiabetic'],
-        ['name' => 'Antiemetic'],
-        ['name' => 'Antifungal'],
-        ['name' => 'Antihistamine'],
-        ['name' => 'Antihypertensive'],
-        ['name' => 'Anti-inflammatory'],
-        ['name' => 'Antimanic'],
-        ['name' => 'Antimigraine'],
-      
-        // Add more categories as needed
-    ]);
+        ]);
 }
 }
