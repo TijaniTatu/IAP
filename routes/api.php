@@ -9,7 +9,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    // Route::get('/drugs', [App\Http\Controllers\DrugController::class, 'index'])->name('drugs.index');
+     Route::get('/drugs', [App\Http\Controllers\DrugController::class, 'index'])->name('drugs.index');
     Route::get('/drugs/create', [App\Http\Controllers\DrugController::class, 'create'])->name('drugs.create');
     Route::post('/drugs', [App\Http\Controllers\DrugController::class, 'store'])->name('drugs.store');
     Route::get('/drugs/{drug}', [App\Http\Controllers\DrugController::class, 'show'])->name('drugs.show');

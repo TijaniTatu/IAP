@@ -19,6 +19,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::post('/generate-token', [App\Http\Controllers\TokenController::class, 'generate'])->name('generate-token');
+// Route::post('/generate-token', [App\Http\Controllers\TokenController::class, 'generate'])->name('generate-token');
+
+Route::get('/generate-token', function () {
+    return view('generate-tokens');
+})->name('generate-token');
+
+Route::get('subscribe', function () {
+    return view('subscribe');
+})->name('subscribe');
 
 require __DIR__.'/auth.php';
