@@ -9,11 +9,20 @@
 
 
 <body class="font-poppins antialiased">
-    <div
+<x-app-layout>
+    <x-slot name="header">
+        <!-- <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Dashboard') }}
+        </h2> -->
+    </x-slot>
+    
+
+<div
       id="view"
       class="h-full w-screen flex flex-row"
       x-data="{ sidenav: true }"
     >
+    
       <button
         @click="sidenav = true"
         class="p-2 border-2 bg-white rounded-md border-gray-200 shadow-lg text-gray-500 focus:bg-teal-500 focus:outline-none focus:text-white absolute top-0 left-0 sm:hidden"
@@ -59,6 +68,7 @@
             </div>
 
           <div
+          
             class="flex border-2 border-gray-200 rounded-md focus-within:ring-2 ring-teal-500"
           >
             <input
@@ -82,6 +92,7 @@
                 ></path>
               </svg>
             </button>
+            
           </div>
           <div id="menu" class="flex flex-col space-y-2">
             <a
@@ -113,7 +124,8 @@
                 <path
                   d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"
                 ></path>
-              </svg>
+              
+            </svg>
               <span class="">Subscribe</span>
             </a>
             <a
@@ -139,9 +151,38 @@
               </svg>
               <span class="">Logout</span>
             </a>
-          </div>
+        
         </div>
-      </div>
+        
+        </div>
 
+        
+</div>
+</div>
+
+<div class="flex-grow p-10 bg-gray-700 rounded-md shadow-md">
+        <form action="{{ route('add.purchases') }}" method="POST">
+            @csrf
+            @if(session('sucess'))
+            <x-success-banner>
+                {{session('success')}}
+            </x-success-banner>
+            @endif
+            <div class="mb-4">
+                <label for="drug" class="block text-gray-700 text-sm font-bold mb-2">Select Drug:</label>
+                <select name="drug" id="drug" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    @foreach ($drugs as $drug)
+                        <option value="{{ $drug->id }}">{{ $drug->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <input type="submit" value="Add Drugs">
+            </div>
+        </form>
     </div>
+
+    
+</x-app-layout>
   </body>

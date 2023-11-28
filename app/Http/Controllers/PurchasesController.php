@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Purchases;
 use Illuminate\Http\Request;
-use App\Models\Purchase;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Drugs as Drug;
+// use App\Models\Purchase;
 
 class PurchasesController extends Controller
 {
@@ -15,6 +17,20 @@ class PurchasesController extends Controller
 
         // Return a JSON response with the purchases
         return response()->json(['purchases' => $purchases]);
+    }
+
+    public function add(Request $request){
+        $user_id = Auth::user()->id;
+        $drug_id = $request->drug;
+
+        $purchase = Purchases::create([
+            'users_id'=> $user_id,
+            'drugs_id'=> $drug_id
+            ]);
+            // dd($request)->all();
+            $drugs = Drug::all();
+
+            return view('subscribe', compact('drugs'))->with('success', "Subscription Made successfully");
     }
 
     public function show($id)

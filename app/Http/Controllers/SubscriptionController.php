@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Subscription;
+use App\Models\Drugs;
 
 class SubscriptionController extends Controller
 {
+
+    public function index(){
+        $drugs = Drugs::orderBy("created_at","desc")->paginate(10);
+        return view("subscribe",compact("drugs"));
+    }
     // app/Http/Controllers/SubscriptionController.php
 
     public function subscribe(Request $request)
