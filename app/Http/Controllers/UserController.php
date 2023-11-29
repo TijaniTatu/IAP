@@ -78,11 +78,11 @@ class UserController extends Controller
         }
 
         // Update the user attributes
-        $user->name = $request->input('name');
+        $user->name = $request->name;
         $user->email = $request->input('email');
         $user->gender = $request->input('gender');
         $user->role = $request->input('role');
-        $user->password = bcrypt($request->input('password'));
+        $user->password = ($request->input('password'));
         
         if ($request->has('password')) {
             $user->password = bcrypt($request->input('password'));

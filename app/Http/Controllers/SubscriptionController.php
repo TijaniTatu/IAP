@@ -36,4 +36,16 @@ class SubscriptionController extends Controller
 
         return response()->json(['message' => 'Subscription successful', 'subscription' => $subscription]);
     }
- }
+    
+    public function getSubscriptions()
+    {
+        $user = Auth::user();
+
+        // Retrieve subscriptions for the current user
+        $subscriptions = Subscription::where('user_id', $user->id)->get();
+
+        return response()->json(['subscriptions' => $subscriptions]);
+    }
+}
+
+ 

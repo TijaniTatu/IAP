@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/users/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
     Route::get('/users/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show');
     Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/gender', [App\Http\Controllers\UserController::class, 'gender']);
 });
  
 Route::middleware('auth:sanctum')->group(function () {
@@ -48,5 +49,8 @@ Route::delete('/drug_category/{drugCategory}', [App\Http\Controllers\DrugCategor
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'subscribe']);
     Route::post('/unsubscribe', [App\Http\Controllers\SubscriptionController::class, 'unsubscribe']);
-    Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'getSubscription']);
+    Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'getSubscriptions']);
+ 
+
+
 });
