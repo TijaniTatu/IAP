@@ -36,6 +36,7 @@ class DrugController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            
             // Add more validation rules as needed
         ]);
 
@@ -43,6 +44,8 @@ class DrugController extends Controller
         $drug = new Drugs();
         $drug->name = $request->input('name');
         $drug->description = $request->input('description');
+        $drug->quantity = $request->input('quantity');
+        $drug->category_id = $request->input('category_id');
         // Set other attributes as needed
 
         // Save the drug to the database
@@ -72,6 +75,8 @@ class DrugController extends Controller
         // Update the drug attributes
         $drug->name = $request->input('name');
         $drug->description = $request->input('description');
+        $drug->quantity = $request->input('quantity');
+        $drug->category_id = $request->input('category_id');
         // Update other attributes as needed
 
         // Save the updated drug to the database

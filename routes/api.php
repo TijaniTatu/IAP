@@ -27,16 +27,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 });
  
+Route::middleware('auth:sanctum')->group(function () {
+Route::get('/drug_category', [App\Http\Controllers\DrugCategoryController::class, 'index']);
+Route::get('/drug_category/{drugCategory}', [App\Http\Controllers\DrugCategoryController::class, 'show']);
+Route::post('/drug_category', [App\Http\Controllers\DrugCategoryController::class, 'store']);
+Route::put('/drug_category/{drugCategory}', [App\Http\Controllers\DrugCategoryController::class, 'update']);
+Route::delete('/drug_category/{drugCategory}', [App\Http\Controllers\DrugCategoryController::class, 'destroy']);
+});
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/drug-categories', [App\Http\Controllers\DrugCategoryController::class, 'index'])->name('drug-categories.index');
-    Route::get('/drug-categories/create', [App\Http\Controllers\DrugCategoryController::class, 'create'])->name('drug-categories.create');
-    Route::post('/drug-categories', [App\Http\Controllers\DrugCategoryController::class, 'store'])->name('drug-categories.store');
-    Route::get('/drug-categories/{drugCategory}', [App\Http\Controllers\DrugCategoryController::class, 'show'])->name('drug-categories.show');
-    Route::get('/drug-categories/{drugCategory}/edit', [App\Http\Controllers\DrugCategoryController::class, 'edit'])->name('drug-categories.edit');
-    Route::patch('/drug-categories/{drugCategory}', [App\Http\Controllers\DrugCategoryController::class, 'update'])->name('drug-categories.update');
-    Route:: delete('/drug-categories/{drugCategory}', [App\Http\Controllers\DrugCategoryController::class, 'destroy'])->name('drug-categories.destroy');
- });
   Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/purchases', [App\Http\Controllers\PurchasesController::class, 'index'])->name('purchases.index');
     Route::get('/purchases/create', [App\Http\Controllers\PurchasesController::class, 'create'])->name('purchases.create');

@@ -112,7 +112,7 @@
               <span class="">Generate token</span>
             </a>
             <a
-              href="{{route('subscribe')}}"
+              href="{{route('purchases')}}"
               class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
               <svg
@@ -128,7 +128,10 @@
             </svg>
               <span class="">Products</span>
             </a>
-            <a href="{{ route('subscribe.form') }}" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
+            <a
+            href="{{route('subscribe')}}"
+              class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
+            >
               <svg
                 class="w-6 h-6 fill-current inline-block"
                 fill="currentColor"
@@ -167,7 +170,6 @@
               </svg>
               <span class="">Logout</span>
             </a>
-            
         
         </div>
         
@@ -177,42 +179,29 @@
 </div>
 </div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                <form method="POST" action="{{ route('generate-token') }}">
-                    @csrf
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Generate Token for the drugs API</button>
-                </form>
-
-                @if (session('token'))
-                    <div>
-                        Your token is: {{ session('token') }}
-                        <div class="mt-2">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="copyButton">Copy Token</button>
-                        </div>
-                    </div>
-                @endif
-                </div>
+<div class="flex-grow p-10 bg-gray-700 rounded-md shadow-md">
+        <form action="{{ route('add.purchases') }}" method="POST">
+            @csrf
+            @if(session('sucess'))
+            <x-success-banner>
+                {{session('success')}}
+            </x-success-banner>
+            @endif
+            <div class="mb-4">
+                <label for="drug" class="block text-gray-700 text-sm font-bold mb-2">Select Drug:</label>
+                <select name="drug" id="drug" class="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    @foreach ($drugs as $drug)
+                        <option value="{{ $drug->id }}">{{ $drug->name }}</option>
+                    @endforeach
+                </select>
             </div>
-        </div>
+
+            <div class="flex items-center justify-between">
+                <input type="submit" value="Add Drugs">
+            </div>
+        </form>
     </div>
-    <script>
-        const copyButton = document.getElementById('copyButton');
-        copyButton.addEventListener('click', () => {
-            navigator.clipboard.writeText('{{ session('token') }}');
 
-            // Change button to a tick
-            copyButton.textContent = '✓';
-
-            // Change button back to "Copy" after 7 seconds
-            setTimeout(() => {
-                copyButton.textContent = 'Copy';
-            }, 7000);
-        });
-    </script>
-    
     
 </x-app-layout>
   </body>

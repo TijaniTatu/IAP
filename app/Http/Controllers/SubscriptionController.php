@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Subscription;
 use App\Models\Drugs;
+use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
@@ -15,39 +16,24 @@ class SubscriptionController extends Controller
         return view("subscribe",compact("drugs"));
     }
     // app/Http/Controllers/SubscriptionController.php
-
+    public function showSubscriptionForm()
+    {
+        return view('subscription.form');
+    }
     public function subscribe(Request $request)
     {
-        $user = $request->user();
+        $user = Auth::user();
         $plan = $request->input('plan');
 
         // Implement logic to validate the plan, calculate expiration, etc.
 
-        $subscription = Subscription::create([
+        $subscription =new Subscription([
             'user_id' => $user->id,
             'plan' => $plan,
             'expires_at' => now()->addMonths(1), // Example: subscribe for 1 month
         ]);
+        
 
         return response()->json(['message' => 'Subscription successful', 'subscription' => $subscription]);
     }
-
-    public function unsubscribe(Request $request)
-    {
-        $user = $request->user();
-
-        // Implement logic to find and cancel the user's subscription
-
-        return response()->json(['message' => 'Unsubscribed successfully']);
-    }
-
-    public function getSubscription(Request $request)
-    {
-        $user = $request->user();
-
-        // Implement logic to get the user's subscription details
-
-        return response()->json(['subscription' => $user->subscription]);
-    }
-
-    }
+ }

@@ -44,6 +44,8 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->gender = $request->input('gender');
+        $user->role = $request->input('role');
         $user->password = bcrypt($request->input('password'));
         // Set other attributes as needed
 
@@ -60,7 +62,10 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
+            'gender'=>'required|string|max:255',
+            'role'=>'required|string|max:255',
             'password' => 'nullable|min:6',
+           
             // Add more validation rules as needed
         ]);
 
@@ -75,6 +80,9 @@ class UserController extends Controller
         // Update the user attributes
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->gender = $request->input('gender');
+        $user->role = $request->input('role');
+        $user->password = bcrypt($request->input('password'));
         
         if ($request->has('password')) {
             $user->password = bcrypt($request->input('password'));

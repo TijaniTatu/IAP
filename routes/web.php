@@ -28,5 +28,9 @@ Route::get('/generate-token', function () {
 Route::get('subscribe',[App\Http\Controllers\SubscriptionController::class,'index'])->name('subscribe');
 Route::post('add/purchases', [App\Http\Controllers\PurchasesController::class,'add'])->name('add.purchases');
 
+use App\Http\Controllers\SubscriptionController;
+
+Route::get('/apply', [SubscriptionController::class, 'showSubscriptionForm'])->name('subscribe.form');
+Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 
 require __DIR__.'/auth.php';
