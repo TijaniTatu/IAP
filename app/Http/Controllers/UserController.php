@@ -94,15 +94,25 @@ class UserController extends Controller
         // Return a JSON response indicating success
         return response()->json(['message' => 'User updated successfully']);
     }
-    public function gender(){
-        $male = User::where('gender', 'male')->count();
-        $female = User::where('gender', 'female')->count();
+    public function getMaleUsers()
+    {
+        // Fetch male users from the database
+        $maleUsers = User::where('gender', 'male')->get();
     
-        return response()->json([
-            'male' => $male,
-            'female' => $female,
-        ]);
+        // Return a JSON response with the male users
+        return response()->json(['maleUsers' => $maleUsers]);
     }
+    
+    public function getFemaleUsers()
+    {
+        // Fetch female users from the database
+        $femaleUsers = User::where('gender', 'female')->get();
+    
+        // Return a JSON response with the female users
+        return response()->json(['femaleUsers' => $femaleUsers]);
+    }
+    
+    
     public function time(){
         $users = User::orderBy('created_at', 'asc')->get();
     

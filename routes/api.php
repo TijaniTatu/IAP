@@ -24,8 +24,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
     Route::patch('/users/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
     Route::get('/users/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show');
-    Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
-    Route::get('/gender', [App\Http\Controllers\UserController::class, 'gender']);
+    Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy'); 
+    Route::get('/users/male', [App\Http\Controllers\UserController::class, 'getMaleUsers']);
+    Route::get('/users/female', [App\Http\Controllers\UserController::class, 'getFemaleUsers']);
+
 });
  
 Route::middleware('auth:sanctum')->group(function () {
